@@ -1,5 +1,7 @@
 # プロトコルの特徴
+
 プロトコル思考を実現するるために重要な3つの特徴
+
 * プロトコルの継承
 * プロトコルの拡張
 * プロトコルのコンポジション
@@ -7,7 +9,9 @@
   この3つの特徴についてみていきます。
 
 ## 継承について
+
 classの継承と同様な記述方法です。
+
 ```swift
 protocol 継承先プロトコル:継承元プロトコル{
 継承先プロトコルにて追加宣言するプロパティ宣言
@@ -15,9 +19,11 @@ protocol 継承先プロトコル:継承元プロトコル{
 ```
 
 ## 実験
+
 継承させたプロトコルに書かれている宣言のみでclassを準拠するとエラーが出るの確かめてみる。
 
 親プロトコルの宣言
+
 ```swift:親プロトコル
 protocol Vehicle {
   var fuel : Float {get set}
@@ -25,14 +31,18 @@ protocol Vehicle {
   func showFuel()
 }
 ```
+
 継承先プロトコルの宣言
+
 ```swift:継承先プロトコル
 protocol Landavehicle : Vehicle{
   var speed : Float{get set}
   func run()
 }
 ```
+
 継承先のみに準拠したclassの宣言
+
 ```swift
 class Car : Landavehicle{
   var speed : Float = 30.0
@@ -45,6 +55,7 @@ class Car : Landavehicle{
 上記のコードによりインスタンスを作成して実行されるか確認してみる。
 
 ## エラーについて
+
 :::note alert
 about_protocol_feature_keisyo.swift:12:7: error: type 'Car' does not conform to protocol 'Vehicle'
 class Car : Landavehicle{
