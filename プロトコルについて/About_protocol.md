@@ -74,3 +74,7 @@ rotocol requires property 'fuel' with type 'Float'; do you want to add a stub?
 about_protocol.swiftにて、mutatingというキーワードがメソッドの前にプロトコルの定義に記述されています。
 * mutating
   * プロパティをこのメソッドが変更することを示している。
+
+## プロトコルのメリット
+オブジェクト指向のデメリットを解決するために考案されたのでがプロトコル思考。
+オブジェクト指向でのクラスの継承は単一継承のため、プロトコルコンポジションを使うことで解消することができる。

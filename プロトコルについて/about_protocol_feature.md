@@ -57,6 +57,7 @@ class Car : Landavehicle{
 ## エラーについて
 
 :::note alert
+
 about_protocol_feature_keisyo.swift:12:7: error: type 'Car' does not conform to protocol 'Vehicle'
 class Car : Landavehicle{
       ^
@@ -72,6 +73,32 @@ about_protocol_feature_keisyo.swift:4:8: note: protocol requires function 'showF
 about_protocol_feature_keisyo.swift:19:10: error: 'any Landavehicle' cannot be constructed because it has no accessible initializers
 var sp = Landavehicle()
          ^~~~~~~~~~~~
+
 :::
 
 よって、上記のエラーより親元のプロトコルをCarクラスが準拠しないため丁寧に準拠してくれよといった内容のエラーが出ました。
+
+## 拡張について
+
+拡張の定義は以下のようにextensionを冒頭に書き込み記述します。
+
+```swift
+extension 拡張するプトロコル{
+追加するメソッドの実装}
+```
+
+## 気付き
+
+拡張して記述した関数などは、classを定義するときに書かなくてもエラーは出ないことがわかりました。
+
+## プロトコルポジションについて
+
+複数のプロトコルに準拠することをプロトコルポジションと呼ぶ
+プロコルポジションの定義は以下の通りです。
+
+```swift
+class クラス名 :1つ目のプロトコル,2つ目のプロトコル { 
+  クラス内の定義
+  }
+}
+```
