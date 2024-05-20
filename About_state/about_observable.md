@@ -11,7 +11,7 @@ Swiftでプロパティの先頭につける<b>@State、@ObservedObject、@Envir
 以下のswift文で変数の動きを確認してみます。
 * @observedObjectの宣言文
   1. クラスに定義したモデルに ObservableObjectのプロトコルを準拠させる。
-   ※クラスの参照型の性質を使っている。
+   <br>※クラスの参照型の性質を使っている。
   2. クラス内で監視する変数には@Publishedを付ける。
   3. 更新をかけた変数がViewで扱えるようにするためには、@ObservedObject 以降にObservedFugaモデルクラスのインスタンスを監視するためのプロパティを定義します。
 ```swift
