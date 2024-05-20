@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State var isStateEnabled : Bool = false
+    @State private var isStateEnabled : Bool = false
+    @ObservedObject var object: ObservedFuga
+
 
     var body: some View {
         VStack {
@@ -21,22 +23,39 @@ struct ContentView: View {
                 //            onchangeモディファイアのofの引数には監視対象となるプロパティを記入する
                     .onChange(of: isStateEnabled){
                         print("isStateEnabledの状態:\(isStateEnabled)")
+//                        Outside().testAccess()
                     }
+            }
+            HStack{
+                Text(isStateEnabled ? "有効" : "無効")
+                    .padding()
+                Toggle("", isOn: self.$object.isObservEnabled)
+                    .padding()
+                //            onchangeモディファイアのofの引数には監視対象となるプロパティを記入する
+                    .onChange(of: object.isObservEnabled){
+                        print("isStateEnabledの状態:\(object.isObservEnabled)")
+
+                    }
+                Slider(value: $object.value, in: 0...100)
+//                トグルボタンを押してisObservEnabledがTrueになった時に画面値が表示される
+                if (self.object.isObservEnabled ){
+                                Text("Value is \(self.object.value)")
+                            }
             }
         }
     }
 }
 
-struct Outside {
-    func print(_: ContentView.isStateEnabled)
+//struct Outside {
 //    func testAccess() {
 //        let view = ContentView()
-//        // エラー: 'isStateEnabled'にアクセスできません
-//        print(view.isStateEnabled)
+//        print(view.isStateEnabled) // エラー: 'isStateEnabled'にアクセスできません
 //    }
-
-}
+//    }
+//}
 
 #Preview {
-    ContentView()
+    ContentView(object: ObservedFuga())
 }
+
+

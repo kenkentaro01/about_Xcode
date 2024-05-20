@@ -11,7 +11,7 @@ import SwiftUI
 struct About_stateApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(object: ObservedFuga())
         }
     }
 }

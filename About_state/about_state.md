@@ -14,7 +14,7 @@ structで定義する変数は通常値を更新することができません�
 ```swift
 struct ContentView: View {
 
-    @State private var isStateEnabled : Bool = false
+    @State var isStateEnabled : Bool = false
 
     var body: some View {
         VStack {
