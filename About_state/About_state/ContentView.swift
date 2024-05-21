@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var isStateEnabled : Bool = false
     @ObservedObject var object: ObservedFuga
 
-
+        
     var body: some View {
         VStack {
             HStack{
@@ -46,13 +46,11 @@ struct ContentView: View {
     }
 }
 
-//struct Outside {
-//    func testAccess() {
-//        let view = ContentView()
-//        print(view.isStateEnabled) // エラー: 'isStateEnabled'にアクセスできません
-//    }
-//    }
-//}
+struct Outside {
+    func testAccess(_ view: ContentView) { // ＊＊＊＊＊修正
+        print(view.isStateEnabled)
+    }
+}
 
 #Preview {
     ContentView(object: ObservedFuga())

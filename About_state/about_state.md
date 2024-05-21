@@ -6,11 +6,11 @@ Swiftでプロパティの先頭につける<b>@State、@ObservedObject、@Envir
 
 ## @Stateの挙動について
 structで定義する変数は通常値を更新することができません。
-変数を監視して、変更に応じてViweを再描写してくれるプロパティーラッパーが、@stateになります。
-基本、@stateを宣言したプロパティのView内でしかアクセスができません。
+変数を監視して、変更に応じてViweを再描写してくれるプロパティーラッパーが、@Stateになります。
+基本、@Stateを宣言したプロパティのView内でしかアクセスができません。
 
 以下のswift文で変数の動きを確認してみます。
-* @stateの宣言文
+* @Stateの宣言文
 ```swift
 struct ContentView: View {
 
@@ -34,7 +34,7 @@ struct ContentView: View {
 ```
 上記で記述したコーディングは以下のようなViewになっています。
 
-![@state](img/about_stat_img1.png)
+![@State](img/about_stat_img1.png)
 
 写真にあるtogleボタンを押すことで、変数（isStateEnabled）がtrueになったりfalseになったりして更新されていることが確認できます。
 
@@ -46,11 +46,24 @@ structで定義された@Stateプロパティに外部からアクセスしよ�
 
 ```swift
 struct Outside {
-    print(isStateEnabled)
+    func testAccess(_ view: ContentView) { // ＊＊＊＊＊修正
+        print(view.isStateEnabled)
+    }
 }
 ```
 
-新しく構造体を構築し、そこからViewで@Stateを定義した変数にアクセスしてみると、このスコープ（範囲）からisStateEnabledの変数を見つけることができないといったエラーが生じました。
+#### 結果
+結果、エラーなどは出ず、@Stateで定義されたisStateEnabledへのアクセスは成功しました。
+しかし、@Stateの後にprivate(プライベート)を宣言すると、アクセスできないエラーが生じました。
+
+```swift
+//privateの宣言
+@State private var isStateEnabled : Bool = false
 ```
-Canot find type 'isStateEnabled' in scope
+
+```error
+'isStateEnabled' is inaccessible due to 'private' protection level
 ```
+
+privateでアクセスしないように宣言した変数は、子ビューで@Bindingを利用することで連携をとることができます。
+<br>binding : 「結合」や「接続」といった意味
