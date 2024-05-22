@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96A11BF32BFDE5440086E4A3 /* EnvironmentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A11BF22BFDE5440086E4A3 /* EnvironmentObject.swift */; };
+		96A11BF52BFDE9200086E4A3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A11BF42BFDE9200086E4A3 /* MainView.swift */; };
 		96EE77712BFAD2580050A783 /* About_stateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE77702BFAD2580050A783 /* About_stateApp.swift */; };
 		96EE77732BFAD2580050A783 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE77722BFAD2580050A783 /* ContentView.swift */; };
 		96EE77752BFAD25B0050A783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96EE77742BFAD25B0050A783 /* Assets.xcassets */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		96A11BF22BFDE5440086E4A3 /* EnvironmentObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentObject.swift; sourceTree = "<group>"; };
+		96A11BF42BFDE9200086E4A3 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		96EE776D2BFAD2580050A783 /* About_state.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = About_state.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96EE77702BFAD2580050A783 /* About_stateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About_stateApp.swift; sourceTree = "<group>"; };
 		96EE77722BFAD2580050A783 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 				96EE77702BFAD2580050A783 /* About_stateApp.swift */,
 				96EE77722BFAD2580050A783 /* ContentView.swift */,
 				96EE777E2BFB37330050A783 /* ObservableModel.swift */,
+				96A11BF22BFDE5440086E4A3 /* EnvironmentObject.swift */,
+				96A11BF42BFDE9200086E4A3 /* MainView.swift */,
 				96EE77742BFAD25B0050A783 /* Assets.xcassets */,
 				96EE77762BFAD25B0050A783 /* Preview Content */,
 			);
@@ -142,6 +148,8 @@
 			files = (
 				96EE77732BFAD2580050A783 /* ContentView.swift in Sources */,
 				96EE77712BFAD2580050A783 /* About_stateApp.swift in Sources */,
+				96A11BF32BFDE5440086E4A3 /* EnvironmentObject.swift in Sources */,
+				96A11BF52BFDE9200086E4A3 /* MainView.swift in Sources */,
 				96EE777F2BFB37330050A783 /* ObservableModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

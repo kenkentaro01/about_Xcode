@@ -11,6 +11,7 @@ struct ContentView: View {
 
     @State private var isStateEnabled : Bool = false
     @ObservedObject var object: ObservedFuga
+    @EnvironmentObject var objects: ObservedFuga
 
         
     var body: some View {
@@ -42,18 +43,27 @@ struct ContentView: View {
                                 Text("Value is \(self.object.value)")
                             }
             }
+            HStack{
+                Toggle(isOn: self.$objects.isObservEnabled) {
+                                Text("無効")
+                            }
+                            Slider(value: self.$objects.value, in: 0...100)
+                        }
+            .padding()
+            }
         }
     }
-}
 
-struct Outside {
-    func testAccess(_ view: ContentView) { // ＊＊＊＊＊修正
-        print(view.isStateEnabled)
-    }
-}
+//struct Outside {
+//    func testAccess(_ view: ContentView) { // ＊＊＊＊＊修正
+//        print(view.isStateEnabled)
+//    }
+//}
 
 #Preview {
     ContentView(object: ObservedFuga())
+//    environmentObject定義した時に以下を書き込む必要がある
+        .environmentObject(ObservedFuga())
 }
 
 
