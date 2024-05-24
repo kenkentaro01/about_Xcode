@@ -75,3 +75,91 @@ struct EnvironmentObjects: View {
 
 ![デモGIF](move/about_environment_move.gif)
 
+## 実験
+#### 実験1  : @observedObjectでプロパティが全体で共有できないことを確認する。
+
+@observedObjectと@EnvironmentObjectの違いを確認するため、@observedObjectでプロパティが全体で共有できないことを確認します。
+
+```swift
+<!-- ObservableModel.swift -->
+import SwiftUI
+
+class ObservedFuga : ObservableObject {
+    @Published var isObservEnabled : Bool = false
+    @Published var value = 0.0
+}
+
+
+<!-- ContentView.swift -->
+struct ContentView: View {
+
+    @State private var isStateEnabled : Bool = false
+    @ObservedObject var object: ObservedFuga
+    @EnvironmentObject var objects: ObservedFuga
+
+        
+    var body: some View {
+        VStack {
+            HStack{
+                Text(isStateEnabled ? "有効" : "無効")
+                    .padding()
+                Toggle("", isOn: self.$object.isObservEnabled)
+                    .padding()
+                //            onchangeモディファイアのofの引数には監視対象となるプロパティを記入する
+                    .onChange(of: object.isObservEnabled){
+                        print("isStateEnabledの状態:\(object.isObservEnabled)")
+
+                    }
+                Slider(value: $object.value, in: 0...100)
+//                トグルボタンを押してisObservEnabledがTrueになった時に画面値が表示される
+                if (self.object.isObservEnabled ){
+                                Text("Value is \(self.object.value)")
+                            }
+            }
+            }
+        }
+    }
+    #Preview {
+    ContentView(object: ObservedFuga())
+//    environmentObject定義した時に以下を書き込む必要がある
+        .environmentObject(ObservedFuga())
+}
+
+<!-- subObservedObject.swift -->
+struct subObservedObject: View {
+    @ObservedObject var object: ObservedFuga
+
+            var body: some View {
+                Text("value is \(self.object.value)")
+            }
+    }
+
+#Preview {
+    subObservedObject(object: ObservedFuga())
+}
+
+
+#Preview {
+    EnvironmentObjects()
+        .environmentObject(ObservedFuga())
+}
+
+<!-- subObservedMain.swift -->
+struct subObservedMain: View {
+    @ObservedObject var object: ObservedFuga
+    var body: some View {
+        VStack {
+            ContentView(object: ObservedFuga())
+            subObservedObject(object: ObservedFuga())
+        }
+    }
+}
+
+#Preview {
+    subObservedMain(object: ObservedFuga)
+}
+
+```
+
+<b>[結果] </b><br>クラッシュしてしまい全体で共有できるかどうかを判定することはできませんでした。
+errorが出たということは、全体でデータを共有したい場合は、@EnvironmentObjectを宣言して使用してあげればいいことがわかりました。
